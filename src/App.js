@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+
+import {  Routes,Route } from 'react-router-dom';
+import ProductDetails from './Ecommerce/Components/ProductDetails';
+import Navbar from './Ecommerce/Components/Navbar';
+import Home from './Ecommerce/Pages/Home';
+import Cart from './Ecommerce/Pages/Cart';
+import { useState } from 'react';
+
+
 
 function App() {
+  const [count, setCount]=useState(0);
+  const [ItemIDData,setItemIDData]=useState([])
+  const InCremnt=(val)=>{
+    setItemIDData([...ItemIDData,val])
+    setCount(
+      count+1
+    )
+    console.log(`i am inside Incremnt and ItemData value is `,ItemIDData)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App " >
+    
+   
+   
+     <Navbar count={count} />
+         <Routes>
+            <Route path='/' element={<Home InCremnt={InCremnt}/>}></Route>
+            <Route path='/cart' element={<Cart ItemIDData={ItemIDData}/>}></Route>
+            <Route path='/details' element={<ProductDetails />}></Route>
+         </Routes>
+        
+  
     </div>
   );
 }

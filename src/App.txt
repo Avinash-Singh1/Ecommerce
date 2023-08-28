@@ -1,0 +1,59 @@
+
+// import { Route } from 'react-router-dom';
+// import './App.css';
+// import Navbar from './Components/Project/Component/Navbar';
+// import Readmore from './Components/Project/Component/Readmore';
+// import Task from './Components/Project/Task';
+// import Thanks from './Components/Project/Thanks';
+// import DropDrag from './Components/Project2/DropDrag';
+// import TodoList from './Components/Project2/TodoList';
+// import RefHook from './RefHook/RefHook';
+// import { Routes, Route } from "react-router-dom"
+// import Context  from "../src/Components/MyLastUseContext/Context"
+// function App() {
+
+//   return (
+//     <>
+//       <div style={{ backgroundImage: "linear-gradient( 135deg, #FFF5C3 10%, #9452A5 100%)" }}>
+//         <Navbar />
+//         <Routes>
+//           <Route path='/' element={<Task />} />
+//           <Route path='/thanks' element={<Thanks />} />
+//           <Route path='/todo' element={<TodoList />} />
+//           <Route path='/readmore' element={<Readmore />} />
+//           <Route path='/dragdrop' element={<DropDrag />} />
+
+//         </Routes>
+//       </div>
+//     </>
+//   );
+// }
+// export default App;
+import React from 'react';
+// import { useSelector } from 'react-redux';
+// import Testimonials from './Testimonials/Testimonials';
+// import Main from './redux/Main';
+import { useSelector,useDispatch } from 'react-redux';
+import { Increment,Decrement}  from "./Components/ReduxApplication/Redux/Action/index"
+const App=()=> {
+  const myState=useSelector((state)=>state.ChangeValue);
+  const dispatch =useDispatch();
+  return (
+    <>
+    {/* <Testimonials/> */}
+    {/* <Main/> */}
+    <div className="container">
+        <h1>Increment/Decrement counter</h1>
+        <h4>Using React and Redux</h4>
+        <div className="quantity">
+          <button className="quantity_minus" title='Decrement' onClick={()=>dispatch(Decrement())}  ><span>-</span></button>
+          <input type="text" name='quantity' className='quantity_input' value={myState} />
+          <button  className="quantity_plus" title='Increment' onClick={()=>dispatch((Increment()))} ><span>+</span></button>
+        </div>
+    </div>
+  </>
+  );
+}
+
+export default App;
+
